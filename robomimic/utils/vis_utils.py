@@ -108,4 +108,59 @@ def depth_to_rgb(depth_map, depth_min=None, depth_max=None):
         assert depth_map.shape[-1] == 1
         depth_map = depth_map[..., 0]
     assert len(depth_map.shape) == 2 # [H, W]
-    return (255. * cm.hot(depth_map, 3)).astype(np.uint8)[..., :3]
+    return (255. * cm.plasma(depth_map, 3)).astype(np.uint8)[..., :3]
+
+# Define global palettes
+GLOCAL_PALLETES = [
+    np.array([[8, 156, 255], [52, 0, 40], [0, 255, 0], [240, 8, 225], [255, 214, 54]]),
+    np.array([[15, 53, 254], [209, 130, 194], [135, 0, 0], [126, 255, 32], [255, 79, 9], [255, 207, 76],
+              [1, 175, 174], [0, 5, 50], [122, 119, 79], [154, 5, 245]]),
+    np.array([[221, 157, 147], [98, 241, 25], [60, 1, 189], [143, 125, 77], [19, 11, 118], [149, 108, 140], 
+              [253, 225, 211], [108, 201, 187], [233, 14, 202], [203, 57, 249], [217, 3, 16], [84, 240, 247], 
+              [218, 191, 31], [133, 37, 32], [2, 164, 83], [74, 67, 125], [100, 233, 115], [200, 59, 71], 
+              [21, 228, 129], [225, 141, 230]])
+    # You can add more palettes with different sizes as needed.
+]
+
+# Function to automatically select a palette based on N
+def select_palette(N):
+    # Look for a palette with at least N colors
+    for palette in GLOCAL_PALLETES:
+        print(palette, len(palette))
+        if len(palette) >= N:
+            return palette[:N]  # Return the first N colors from the selected palette
+    
+    # If no palette is large enough, repeat the largest palette
+    largest_palette = GLOCAL_PALLETES[-1]
+    return np.tile(largest_palette, (N // len(largest_palette) + 1, 1))[:N]
+
+# Function to map segment indices to RGB color map
+def seg_to_rgb(seg_map, N=None):
+    """
+    Convert a segmentation map to an RGB image using an automatically selected palette.
+    
+    Parameters:
+    seg_map: 2D numpy array with integer values representing segment labels.
+    N: Number of unique segments (optional). If None, it's inferred from seg_map.
+    
+    Returns:
+    rgb_map: An RGB image of the same spatial size as seg_map.
+    """
+    
+    if N is None:
+        N = seg_map.max() + 1  # Infer the number of segments
+
+    # Automatically select a palette with at least N colors
+    palette = select_palette(N)
+    
+    seg_map = seg_map.squeeze(-1)
+
+    # Create an empty RGB map with the same height and width as seg_map
+    h, w = seg_map.shape
+    rgb_map = np.zeros((h, w, 3), dtype=np.uint8)
+    
+    # Map each segment index to the corresponding color in the palette
+    for segment_id in range(N):
+        rgb_map[seg_map == segment_id] = palette[segment_id]
+    
+    return rgb_map.astype(np.uint8)[..., :3]

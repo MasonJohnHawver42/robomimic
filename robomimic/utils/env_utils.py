@@ -249,7 +249,8 @@ def create_env_for_data_processing(
     render=None, 
     render_offscreen=None, 
     use_image_obs=None, 
-    use_depth_obs=None, 
+    use_depth_obs=None,
+    use_segmentation_obs=None, # {None, class, instance, element} 
 ):
     """
     Creates environment for processing dataset observations and rewards.
@@ -296,6 +297,9 @@ def create_env_for_data_processing(
     env_kwargs.pop("render_offscreen", None)
     env_kwargs.pop("use_image_obs", None)
     env_kwargs.pop("use_depth_obs", None)
+    env_kwargs.pop("use_segmentation_obs", None)
+
+    print("use_segmentation_obs", use_segmentation_obs)
 
     env = env_class.create_for_data_processing(
         env_name=env_name, 
@@ -307,8 +311,12 @@ def create_env_for_data_processing(
         render_offscreen=render_offscreen, 
         use_image_obs=use_image_obs, 
         use_depth_obs=use_depth_obs,
+        use_segmentation_obs=use_segmentation_obs,
         **env_kwargs,
     )
+
+    print(env)
+
     check_env_version(env, env_meta)
     return env
 

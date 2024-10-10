@@ -25,7 +25,8 @@ class EnvBase(abc.ABC):
         render=False, 
         render_offscreen=False, 
         use_image_obs=False, 
-        use_depth_obs=False, 
+        use_depth_obs=False,
+        use_segmentation_obs=None, # {None, class, instance, element} 
         postprocess_visual_obs=True, 
         **kwargs,
     ):

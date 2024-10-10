@@ -25,6 +25,8 @@ try:
 except ImportError:
     MUJOCO_EXCEPTIONS = []
 
+import inspect
+import traceback
 
 class EnvRobosuite(EB.EnvBase):
     """Wrapper class for robosuite environments (https://github.com/ARISE-Initiative/robosuite)"""
@@ -34,7 +36,8 @@ class EnvRobosuite(EB.EnvBase):
         render=False, 
         render_offscreen=False, 
         use_image_obs=False, 
-        use_depth_obs=False, 
+        use_depth_obs=False,
+        use_segmentation_obs=None, # {None, class, instance, element} 
         postprocess_visual_obs=True, 
         **kwargs,
     ):
@@ -62,6 +65,9 @@ class EnvRobosuite(EB.EnvBase):
         """
         self.postprocess_visual_obs = postprocess_visual_obs
         self.use_depth_obs = use_depth_obs
+        self.use_segmentation_obs = use_segmentation_obs
+
+        print(use_segmentation_obs)
 
         # robosuite version check
         self._is_v1 = (robosuite.__version__.split(".")[0] == "1")
@@ -78,8 +84,11 @@ class EnvRobosuite(EB.EnvBase):
             use_object_obs=True,
             use_camera_obs=use_image_obs,
             camera_depths=use_depth_obs,
+            camera_segmentations=use_segmentation_obs
         )
         kwargs.update(update_kwargs)
+
+        print(self._is_v1)
 
         if self._is_v1:
             if kwargs["has_offscreen_renderer"]:
@@ -97,7 +106,14 @@ class EnvRobosuite(EB.EnvBase):
 
         self._env_name = env_name
         self._init_kwargs = deepcopy(kwargs)
+        print(kwargs)
         self.env = robosuite.make(self._env_name, **kwargs)
+
+        print("Mason", inspect.getmro(type(self)))
+        print("Mason", inspect.getmro(type(self.env)))
+        print("Mason", inspect.getmro(type(self.env.sim)))
+
+        traceback.print_stack()
 
         if self._is_v1:
             # Make sure joint position observations and eef vel observations are active
@@ -417,7 +433,8 @@ class EnvRobosuite(EB.EnvBase):
         render=None, 
         render_offscreen=None, 
         use_image_obs=None, 
-        use_depth_obs=None, 
+        use_depth_obs=None,
+        use_segmentation_obs=None, # {None, class, instance, element}  
         **kwargs,
     ):
         """
@@ -459,12 +476,16 @@ class EnvRobosuite(EB.EnvBase):
 
         kwargs.update(new_kwargs)
 
+        print("HUGE WALL", use_segmentation_obs)
+
         # also initialize obs utils so it knows which modalities are image modalities
         image_modalities = list(camera_names)
         depth_modalities = list(camera_names)
+        segmt_modalities = list(camera_names)
         if is_v1:
             image_modalities = ["{}_image".format(cn) for cn in camera_names]
             depth_modalities = ["{}_depth".format(cn) for cn in camera_names]
+            segmt_modalities = ["{}_segmentation_{}".format(cn, use_segmentation_obs) for cn in camera_names] if use_segmentation_obs is not None else []
         elif has_camera:
             # v0.3 only had support for one image, and it was named "image"
             assert len(image_modalities) == 1
@@ -478,7 +499,14 @@ class EnvRobosuite(EB.EnvBase):
         }
         if use_depth_obs:
             obs_modality_specs["obs"]["depth"] = depth_modalities
+        if use_segmentation_obs is not None:
+            obs_modality_specs["obs"]["seg_{}".format(use_segmentation_obs)] = segmt_modalities
+        
+        print(obs_modality_specs)
+        
         ObsUtils.initialize_obs_utils_with_obs_specs(obs_modality_specs)
+
+        print("CLS", type(cls))
 
         # note that @postprocess_visual_obs is False since this env's images will be written to a dataset
         return cls(
@@ -487,6 +515,7 @@ class EnvRobosuite(EB.EnvBase):
             render_offscreen=(has_camera if render_offscreen is None else render_offscreen), 
             use_image_obs=(has_camera if use_image_obs is None else use_image_obs), 
             use_depth_obs=use_depth_obs,
+            use_segmentation_obs=use_segmentation_obs,
             postprocess_visual_obs=False,
             **kwargs,
         )
