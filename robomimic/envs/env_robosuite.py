@@ -67,7 +67,7 @@ class EnvRobosuite(EB.EnvBase):
         self.use_depth_obs = use_depth_obs
         self.use_segmentation_obs = use_segmentation_obs
 
-        print(use_segmentation_obs)
+        # print(use_segmentation_obs)
 
         # robosuite version check
         self._is_v1 = (robosuite.__version__.split(".")[0] == "1")
@@ -88,7 +88,7 @@ class EnvRobosuite(EB.EnvBase):
         )
         kwargs.update(update_kwargs)
 
-        print(self._is_v1)
+        # print(self._is_v1)
 
         if self._is_v1:
             if kwargs["has_offscreen_renderer"]:
@@ -106,14 +106,14 @@ class EnvRobosuite(EB.EnvBase):
 
         self._env_name = env_name
         self._init_kwargs = deepcopy(kwargs)
-        print(kwargs)
+        # print(kwargs)
         self.env = robosuite.make(self._env_name, **kwargs)
 
-        print("Mason", inspect.getmro(type(self)))
-        print("Mason", inspect.getmro(type(self.env)))
-        print("Mason", inspect.getmro(type(self.env.sim)))
+        # print("Mason", inspect.getmro(type(self)))
+        # print("Mason", inspect.getmro(type(self.env)))
+        # print("Mason", inspect.getmro(type(self.env.sim)))
 
-        traceback.print_stack()
+        # traceback.print_stack()
 
         if self._is_v1:
             # Make sure joint position observations and eef vel observations are active
@@ -476,7 +476,7 @@ class EnvRobosuite(EB.EnvBase):
 
         kwargs.update(new_kwargs)
 
-        print("HUGE WALL", use_segmentation_obs)
+        # print("HUGE WALL", use_segmentation_obs)
 
         # also initialize obs utils so it knows which modalities are image modalities
         image_modalities = list(camera_names)
@@ -502,11 +502,11 @@ class EnvRobosuite(EB.EnvBase):
         if use_segmentation_obs is not None:
             obs_modality_specs["obs"]["seg_{}".format(use_segmentation_obs)] = segmt_modalities
         
-        print(obs_modality_specs)
+        # print(obs_modality_specs)
         
         ObsUtils.initialize_obs_utils_with_obs_specs(obs_modality_specs)
 
-        print("CLS", type(cls))
+        # print("CLS", type(cls))
 
         # note that @postprocess_visual_obs is False since this env's images will be written to a dataset
         return cls(

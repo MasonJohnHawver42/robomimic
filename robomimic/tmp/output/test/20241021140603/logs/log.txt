@@ -1,0 +1,290 @@
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['robot0_eef_quat', 'robot0_eef_pos', 'robot0_gripper_qpos']
+using obs modality: rgb with keys: ['robot0_robotview_image', 'robot0_eye_in_hand_image']
+using obs modality: depth with keys: []
+using obs modality: scan with keys: []
+
+============= Loaded Environment Metadata =============
+obs key robot0_eef_pos with shape (3,)
+obs key robot0_eef_quat with shape (4,)
+obs key robot0_eye_in_hand_image with shape (128, 128, 3)
+obs key robot0_gripper_qpos with shape (2,)
+obs key robot0_robotview_image with shape (128, 128, 3)
+None
+True
+{'has_renderer': False, 'has_offscreen_renderer': True, 'ignore_done': True, 'use_object_obs': True, 'use_camera_obs': True, 'control_freq': 20, 'controller_configs': {'type': 'OSC_POSE', 'input_max': 1, 'input_min': -1, 'output_max': [0.05, 0.05, 0.05, 0.5, 0.5, 0.5], 'output_min': [-0.05, -0.05, -0.05, -0.5, -0.5, -0.5], 'kp': 150, 'damping': 1, 'impedance_mode': 'fixed', 'kp_limits': [0, 300], 'damping_limits': [0, 10], 'position_limits': None, 'orientation_limits': None, 'uncouple_pos_ori': True, 'control_delta': True, 'interpolation': None, 'ramp_ratio': 0.2}, 'robots': ['Panda'], 'camera_depths': False, 'camera_heights': 128, 'camera_widths': 128, 'render_gpu_device_id': 0, 'reward_shaping': False, 'camera_names': ['robot0_robotview', 'robot0_eye_in_hand'], 'camera_segmentations': None}
+Mason (<class 'robomimic.envs.env_robosuite.EnvRobosuite'>, <class 'robomimic.envs.env_base.EnvBase'>, <class 'abc.ABC'>, <class 'object'>)
+Mason (<class 'mimicgen.envs.robosuite.stack.StackThree_D1'>, <class 'mimicgen.envs.robosuite.stack.StackThree_D0'>, <class 'mimicgen.envs.robosuite.stack.StackThree'>, <class 'mimicgen.envs.robosuite.stack.Stack_D0'>, <class 'robosuite.environments.manipulation.stack.Stack'>, <class 'mimicgen.envs.robosuite.single_arm_env_mg.SingleArmEnv_MG'>, <class 'robosuite.environments.manipulation.single_arm_env.SingleArmEnv'>, <class 'robosuite.environments.manipulation.manipulation_env.ManipulationEnv'>, <class 'robosuite.environments.robot_env.RobotEnv'>, <class 'robosuite.environments.base.MujocoEnv'>, <class 'object'>)
+Mason (<class 'robosuite.utils.binding_utils.MjSim'>, <class 'object'>)
+  File "scripts/train.py", line 428, in <module>
+    main(args)
+  File "scripts/train.py", line 379, in main
+    train(config, device=device)
+  File "scripts/train.py", line 100, in train
+    env = EnvUtils.create_env_from_metadata(
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/utils/env_utils.py", line 229, in create_env_from_metadata
+    env = create_env(
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/utils/env_utils.py", line 174, in create_env
+    env = env_class(
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/envs/env_robosuite.py", line 116, in __init__
+    traceback.print_stack()
+Created environment with name StackThree_D1
+Action size is 7
+StackThree_D1
+{
+    "camera_depths": false,
+    "camera_heights": 128,
+    "camera_names": [
+        "robot0_robotview",
+        "robot0_eye_in_hand"
+    ],
+    "camera_segmentations": null,
+    "camera_widths": 128,
+    "control_freq": 20,
+    "controller_configs": {
+        "control_delta": true,
+        "damping": 1,
+        "damping_limits": [
+            0,
+            10
+        ],
+        "impedance_mode": "fixed",
+        "input_max": 1,
+        "input_min": -1,
+        "interpolation": null,
+        "kp": 150,
+        "kp_limits": [
+            0,
+            300
+        ],
+        "orientation_limits": null,
+        "output_max": [
+            0.05,
+            0.05,
+            0.05,
+            0.5,
+            0.5,
+            0.5
+        ],
+        "output_min": [
+            -0.05,
+            -0.05,
+            -0.05,
+            -0.5,
+            -0.5,
+            -0.5
+        ],
+        "position_limits": null,
+        "ramp_ratio": 0.2,
+        "type": "OSC_POSE",
+        "uncouple_pos_ori": true
+    },
+    "has_offscreen_renderer": true,
+    "has_renderer": false,
+    "ignore_done": true,
+    "render_gpu_device_id": 0,
+    "reward_shaping": false,
+    "robots": [
+        "Panda"
+    ],
+    "use_camera_obs": true,
+    "use_object_obs": true
+}
+
+wandb: Using wandb-core as the SDK backend. Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: mason-hawver (hawver). Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.18.5
+wandb: Run data is saved locally in /home/xxs/rpm/benchmark/ext/robomimic/robomimic/tmp/output/test/20241021140603/logs/wandb/run-20241021_140607-x6lnpxmq
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run test
+wandb:  View project at https://wandb.ai/hawver/debug
+wandb:  View run at https://wandb.ai/hawver/debug/runs/x6lnpxmq
+/home/xxs/miniforge3/envs/benchmark/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xxs/miniforge3/envs/benchmark/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+
+============= Model Summary =============
+ObservationKeyToModalityDict: action not found, adding action to mapping with assumed low_dim modality!
+BC (
+  ModuleDict(
+    (policy): ActorNetwork(
+        action_dim=7
+  
+        encoder=ObservationGroupEncoder(
+            group=obs
+            ObservationEncoder(
+                Key(
+                    name=robot0_eef_pos
+                    shape=[3]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=robot0_eef_quat
+                    shape=[4]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=robot0_eye_in_hand_image
+                    shape=[3, 128, 128]
+                    modality=rgb
+                    randomizer=CropRandomizer(input_shape=[3, 128, 128], crop_size=[114, 114], num_crops=1)
+                    net=VisualCore(
+                      input_shape=[3, 114, 114]
+                      output_shape=[64]
+                      backbone_net=ResNet18Conv(input_channel=3, input_coord_conv=False)
+                      pool_net=SpatialSoftmax(num_kp=32, temperature=1.0, noise=0.0)
+                    )
+                    sharing_from=None
+                )
+                Key(
+                    name=robot0_gripper_qpos
+                    shape=[2]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=robot0_robotview_image
+                    shape=[3, 128, 128]
+                    modality=rgb
+                    randomizer=CropRandomizer(input_shape=[3, 128, 128], crop_size=[114, 114], num_crops=1)
+                    net=VisualCore(
+                      input_shape=[3, 114, 114]
+                      output_shape=[64]
+                      backbone_net=ResNet18Conv(input_channel=3, input_coord_conv=False)
+                      pool_net=SpatialSoftmax(num_kp=32, temperature=1.0, noise=0.0)
+                    )
+                    sharing_from=None
+                )
+                output_shape=[137]
+            )
+        )
+  
+        mlp=MLP(
+            input_dim=137
+            output_dim=1024
+            layer_dims=[1024]
+            layer_func=Linear
+            dropout=None
+            act=ReLU
+            output_act=ReLU
+        )
+  
+        decoder=ObservationDecoder(
+            Key(
+                name=action
+                shape=(7,)
+                modality=low_dim
+                net=(Linear(in_features=1024, out_features=7, bias=True))
+            )
+        )
+    )
+  )
+)
+
+SequenceDataset: loading dataset into memory...
+  0%|          | 0/900 [00:00<?, ?it/s] 14%|#4        | 128/900 [00:00<00:00, 1274.48it/s] 29%|##8       | 258/900 [00:00<00:00, 1284.28it/s] 43%|####3     | 388/900 [00:00<00:00, 1287.57it/s] 58%|#####7    | 518/900 [00:00<00:00, 1290.19it/s] 72%|#######2  | 648/900 [00:00<00:00, 1290.52it/s] 86%|########6 | 778/900 [00:00<00:00, 1286.92it/s]100%|##########| 900/900 [00:00<00:00, 1284.14it/s]
+SequenceDataset: loading dataset into memory...
+  0%|          | 0/100 [00:00<?, ?it/s]100%|##########| 100/100 [00:00<00:00, 1286.73it/s]
+
+============= Training Dataset =============
+SequenceDataset (
+	path=tmp/my_dataset/mason_stack_three_d1.hdf5
+	obs_keys=('robot0_eef_pos', 'robot0_eef_quat', 'robot0_eye_in_hand_image', 'robot0_gripper_qpos', 'robot0_robotview_image')
+	seq_length=1
+	filter_key=train
+	frame_stack=1
+	pad_seq_length=True
+	pad_frame_stack=True
+	goal_mode=none
+	cache_mode=low_dim
+	num_demos=900
+	num_sequences=229556
+)
+
+
+============= Validation Dataset =============
+SequenceDataset (
+	path=tmp/my_dataset/mason_stack_three_d1.hdf5
+	obs_keys=('robot0_eef_pos', 'robot0_eef_quat', 'robot0_eye_in_hand_image', 'robot0_gripper_qpos', 'robot0_robotview_image')
+	seq_length=1
+	filter_key=valid
+	frame_stack=1
+	pad_seq_length=True
+	pad_frame_stack=True
+	goal_mode=none
+	cache_mode=low_dim
+	num_demos=100
+	num_sequences=25540
+)
+
+**************************************************
+Warnings generated by robomimic have been duplicated here (from above) for convenience. Please check them carefully.
+**************************************************
+
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|1         | 1/100 [00:02<04:21,  2.64s/it]  2%|2         | 2/100 [00:02<02:03,  1.26s/it]  3%|3         | 3/100 [00:03<01:17,  1.24it/s]  4%|4         | 4/100 [00:03<00:57,  1.66it/s]  5%|5         | 5/100 [00:03<00:45,  2.08it/s]  6%|6         | 6/100 [00:04<00:38,  2.42it/s]  7%|7         | 7/100 [00:04<00:34,  2.70it/s]  8%|8         | 8/100 [00:04<00:32,  2.87it/s]  9%|9         | 9/100 [00:04<00:30,  3.03it/s] 10%|#         | 10/100 [00:05<00:27,  3.23it/s] 11%|#1        | 11/100 [00:05<00:26,  3.30it/s] 12%|#2        | 12/100 [00:05<00:26,  3.35it/s] 13%|#3        | 13/100 [00:06<00:25,  3.41it/s] 14%|#4        | 14/100 [00:06<00:24,  3.49it/s] 15%|#5        | 15/100 [00:06<00:24,  3.47it/s] 16%|#6        | 16/100 [00:06<00:24,  3.50it/s] 17%|#7        | 17/100 [00:07<00:23,  3.48it/s] 18%|#8        | 18/100 [00:07<00:23,  3.46it/s] 19%|#9        | 19/100 [00:07<00:23,  3.51it/s] 20%|##        | 20/100 [00:08<00:22,  3.48it/s] 21%|##1       | 21/100 [00:08<00:22,  3.55it/s] 22%|##2       | 22/100 [00:08<00:22,  3.51it/s] 23%|##3       | 23/100 [00:08<00:21,  3.53it/s] 24%|##4       | 24/100 [00:09<00:21,  3.51it/s] 25%|##5       | 25/100 [00:09<00:21,  3.51it/s] 26%|##6       | 26/100 [00:09<00:20,  3.61it/s] 27%|##7       | 27/100 [00:09<00:20,  3.59it/s] 28%|##8       | 28/100 [00:10<00:20,  3.55it/s] 29%|##9       | 29/100 [00:10<00:20,  3.54it/s] 30%|###       | 30/100 [00:10<00:19,  3.56it/s] 31%|###1      | 31/100 [00:11<00:19,  3.52it/s] 32%|###2      | 32/100 [00:11<00:19,  3.51it/s] 33%|###3      | 33/100 [00:11<00:19,  3.52it/s] 34%|###4      | 34/100 [00:11<00:18,  3.48it/s] 35%|###5      | 35/100 [00:12<00:18,  3.52it/s] 36%|###6      | 36/100 [00:12<00:17,  3.74it/s] 37%|###7      | 37/100 [00:12<00:17,  3.59it/s] 38%|###8      | 38/100 [00:13<00:18,  3.41it/s] 39%|###9      | 39/100 [00:13<00:18,  3.29it/s] 40%|####      | 40/100 [00:13<00:18,  3.29it/s] 41%|####1     | 41/100 [00:14<00:18,  3.25it/s] 42%|####2     | 42/100 [00:14<00:17,  3.23it/s] 43%|####3     | 43/100 [00:14<00:17,  3.21it/s] 44%|####4     | 44/100 [00:15<00:17,  3.20it/s] 45%|####5     | 45/100 [00:15<00:16,  3.28it/s] 46%|####6     | 46/100 [00:15<00:17,  3.15it/s] 47%|####6     | 47/100 [00:15<00:16,  3.31it/s] 48%|####8     | 48/100 [00:16<00:15,  3.39it/s] 49%|####9     | 49/100 [00:16<00:15,  3.37it/s] 50%|#####     | 50/100 [00:16<00:14,  3.38it/s] 51%|#####1    | 51/100 [00:17<00:14,  3.39it/s] 52%|#####2    | 52/100 [00:17<00:14,  3.40it/s] 53%|#####3    | 53/100 [00:17<00:13,  3.37it/s] 54%|#####4    | 54/100 [00:17<00:13,  3.39it/s] 55%|#####5    | 55/100 [00:18<00:13,  3.31it/s] 56%|#####6    | 56/100 [00:18<00:13,  3.23it/s] 57%|#####6    | 57/100 [00:18<00:13,  3.19it/s] 58%|#####8    | 58/100 [00:19<00:13,  3.16it/s] 59%|#####8    | 59/100 [00:19<00:12,  3.24it/s] 60%|######    | 60/100 [00:19<00:12,  3.27it/s] 61%|######1   | 61/100 [00:20<00:11,  3.40it/s] 62%|######2   | 62/100 [00:20<00:11,  3.43it/s] 63%|######3   | 63/100 [00:20<00:11,  3.36it/s] 64%|######4   | 64/100 [00:21<00:10,  3.38it/s] 65%|######5   | 65/100 [00:21<00:10,  3.37it/s] 66%|######6   | 66/100 [00:21<00:10,  3.37it/s] 67%|######7   | 67/100 [00:21<00:09,  3.44it/s] 68%|######8   | 68/100 [00:22<00:09,  3.43it/s] 69%|######9   | 69/100 [00:22<00:08,  3.45it/s] 70%|#######   | 70/100 [00:22<00:08,  3.40it/s] 71%|#######1  | 71/100 [00:23<00:08,  3.46it/s] 72%|#######2  | 72/100 [00:23<00:08,  3.45it/s] 73%|#######3  | 73/100 [00:23<00:07,  3.49it/s] 74%|#######4  | 74/100 [00:23<00:07,  3.46it/s] 75%|#######5  | 75/100 [00:24<00:07,  3.45it/s] 76%|#######6  | 76/100 [00:24<00:06,  3.51it/s] 77%|#######7  | 77/100 [00:24<00:06,  3.46it/s] 78%|#######8  | 78/100 [00:25<00:06,  3.49it/s] 79%|#######9  | 79/100 [00:25<00:05,  3.57it/s] 80%|########  | 80/100 [00:25<00:05,  3.52it/s] 81%|########1 | 81/100 [00:25<00:05,  3.50it/s] 82%|########2 | 82/100 [00:26<00:05,  3.45it/s] 83%|########2 | 83/100 [00:26<00:04,  3.57it/s] 84%|########4 | 84/100 [00:26<00:04,  3.55it/s] 85%|########5 | 85/100 [00:27<00:04,  3.63it/s] 86%|########6 | 86/100 [00:27<00:03,  3.63it/s] 87%|########7 | 87/100 [00:27<00:03,  3.60it/s] 88%|########8 | 88/100 [00:27<00:03,  3.60it/s] 89%|########9 | 89/100 [00:28<00:03,  3.52it/s] 90%|######### | 90/100 [00:28<00:02,  3.50it/s] 91%|#########1| 91/100 [00:28<00:02,  3.50it/s] 92%|#########2| 92/100 [00:29<00:02,  3.45it/s] 93%|#########3| 93/100 [00:29<00:01,  3.53it/s] 94%|#########3| 94/100 [00:29<00:01,  3.50it/s] 95%|#########5| 95/100 [00:29<00:01,  3.57it/s] 96%|#########6| 96/100 [00:30<00:01,  3.50it/s] 97%|#########7| 97/100 [00:30<00:00,  3.48it/s] 98%|#########8| 98/100 [00:30<00:00,  3.43it/s] 99%|#########9| 99/100 [00:31<00:00,  3.47it/s]100%|##########| 100/100 [00:31<00:00,  3.44it/s]100%|##########| 100/100 [00:31<00:00,  3.19it/s]
+Train Epoch 1
+{
+    "Cosine_Loss": 0.8465606784820556,
+    "L1_Loss": 0.08247667526826262,
+    "L2_Loss": 0.16902176458388568,
+    "Loss": 0.16902176458388568,
+    "Optimizer/policy0_lr": 0.0001,
+    "Policy_Grad_Norms": 0.8171603603328131,
+    "Time_Data_Loading": 0.005848538875579834,
+    "Time_Epoch": 0.5222674330075582,
+    "Time_Log_Info": 0.009160220623016357,
+    "Time_Process_Batch": 0.01497787634531657,
+    "Time_Train_Batch": 0.49131958882013954
+}
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|#         | 1/10 [00:00<00:06,  1.49it/s] 40%|####      | 4/10 [00:00<00:00,  6.03it/s] 60%|######    | 6/10 [00:01<00:00,  6.96it/s] 80%|########  | 8/10 [00:01<00:00,  7.55it/s]100%|##########| 10/10 [00:01<00:00,  7.86it/s]100%|##########| 10/10 [00:01<00:00,  6.62it/s]
+Validation Epoch 1
+{
+    "Cosine_Loss": 0.7987508714199066,
+    "L1_Loss": 0.0753898523747921,
+    "L2_Loss": 0.15704250186681748,
+    "Loss": 0.15704250186681748,
+    "Optimizer/policy0_lr": 0.0001,
+    "Time_Data_Loading": 0.013893818855285645,
+    "Time_Epoch": 0.025404024124145507,
+    "Time_Log_Info": 0.00042889912923177085,
+    "Time_Process_Batch": 0.0012498219807942708,
+    "Time_Train_Batch": 0.009565591812133789
+}
+video writes to /home/xxs/rpm/benchmark/ext/robomimic/robomimic/tmp/output/test/20241021140603/videos/StackThree_D1_epoch_1.mp4
+rollout: env=StackThree_D1, horizon=400, use_goals=False, num_episodes=50
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|2         | 1/50 [00:16<13:47, 16.89s/it]  4%|4         | 2/50 [00:32<13:08, 16.42s/it]  6%|6         | 3/50 [00:48<12:38, 16.13s/it]  6%|6         | 3/50 [00:58<15:09, 19.35s/it]
+Traceback (most recent call last):
+  File "scripts/train.py", line 428, in <module>
+    main(args)
+  File "scripts/train.py", line 379, in main
+    train(config, device=device)
+  File "scripts/train.py", line 264, in train
+    all_rollout_logs, video_paths = TrainUtils.rollout_with_stats(
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/utils/train_utils.py", line 359, in rollout_with_stats
+    rollout_info = run_rollout(
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/utils/train_utils.py", line 226, in run_rollout
+    ac = policy(ob=ob_dict, goal=goal_dict)
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/algo/algo.py", line 522, in __call__
+    ob = self._prepare_observation(ob)
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/algo/algo.py", line 499, in _prepare_observation
+    ob = TensorUtils.to_device(ob, self.policy.device)
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/utils/tensor_utils.py", line 270, in to_device
+    return recursive_dict_list_tuple_apply(
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/utils/tensor_utils.py", line 30, in recursive_dict_list_tuple_apply
+    new_x[k] = recursive_dict_list_tuple_apply(v, type_func_dict)
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/utils/tensor_utils.py", line 40, in recursive_dict_list_tuple_apply
+    return f(x)
+  File "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/utils/tensor_utils.py", line 273, in <lambda>
+    torch.Tensor: lambda x, d=device: x.to(d),
+KeyboardInterrupt

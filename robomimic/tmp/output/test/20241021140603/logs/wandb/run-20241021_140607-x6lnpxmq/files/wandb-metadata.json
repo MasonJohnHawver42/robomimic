@@ -1,0 +1,56 @@
+{
+  "os":  "Linux-5.15.0-124-generic-x86_64-with-glibc2.17",
+  "python":  "3.8.20",
+  "startedAt":  "2024-10-21T19:06:07.307923Z",
+  "cuda":  "11.0.207",
+  "args":  [
+    "--config",
+    "tmp/my_configs/test.json",
+    "--dataset",
+    "tmp/my_dataset/mason_stack_three_d1.hdf5"
+  ],
+  "program":  "scripts/train.py",
+  "codePath":  "scripts/train.py",
+  "git":  {
+    "remote":  "git@github.com:MasonJohnHawver42/Benchmark.git",
+    "commit":  "5265f63f5648b2554942ba87f8fb316e47b0196d"
+  },
+  "email":  "mason.hawver@gmail.com",
+  "root":  "/home/xxs/rpm/benchmark/ext/robomimic/robomimic/tmp/output/test/20241021140603/logs",
+  "host":  "cs-u-rpm-dt-03",
+  "username":  "xxs",
+  "executable":  "/home/xxs/miniforge3/envs/benchmark/bin/python",
+  "codePathLocal":  "scripts/train.py",
+  "cpu_count":  16,
+  "cpu_count_logical":  32,
+  "gpu":  "NVIDIA RTX A5500",
+  "gpu_count":  2,
+  "disk":  {
+    "/":  {
+      "total":  "2014574526464",
+      "used":  "1444440518656"
+    }
+  },
+  "memory":  {
+    "total":  "134913388544"
+  },
+  "cpu":  {
+    "count":  16,
+    "countLogical":  32
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA RTX A5500",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  10240,
+      "architecture":  "Ampere"
+    },
+    {
+      "name":  "NVIDIA RTX A5500",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  10240,
+      "architecture":  "Ampere"
+    }
+  ],
+  "cudaVersion":  "12.2"
+}

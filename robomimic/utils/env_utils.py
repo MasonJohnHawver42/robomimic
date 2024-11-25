@@ -299,7 +299,7 @@ def create_env_for_data_processing(
     env_kwargs.pop("use_depth_obs", None)
     env_kwargs.pop("use_segmentation_obs", None)
 
-    print("use_segmentation_obs", use_segmentation_obs)
+    # print("use_segmentation_obs", use_segmentation_obs)
 
     env = env_class.create_for_data_processing(
         env_name=env_name, 
@@ -315,7 +315,7 @@ def create_env_for_data_processing(
         **env_kwargs,
     )
 
-    print(env)
+    # print(env)
 
     check_env_version(env, env_meta)
     return env

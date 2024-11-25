@@ -264,7 +264,7 @@ def playback_dataset(args):
 
     for ind in range(len(demos)):
         ep = demos[ind]
-        print("Playing back episode: {}".format(ep))
+        # print("Playing back episode: {}".format(ep))
 
         if args.use_obs:
             playback_trajectory_with_obs(
@@ -279,6 +279,7 @@ def playback_dataset(args):
 
         # prepare initial state to reload from
         states = f["data/{}/states".format(ep)][()]
+        # print("HERE", f["data/{}".format(ep)])
         initial_state = dict(states=states[0])
         if is_robosuite_env:
             initial_state["model"] = f["data/{}".format(ep)].attrs["model_file"]
